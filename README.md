@@ -32,7 +32,7 @@ colcon build
 ## 1.2 Clone this repo 
 Make sure you clone the repo in your robot and your remote PC 
 ```
-git clone -b ros2-humble --recursive https://github.com/rigbetellabs/tortoisebot.git
+git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
 ```
 ```
 cd ~/your workscpace
@@ -47,9 +47,9 @@ colcon build
 ### 2.1 Launching the robot
 
 ```
-ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True slam:=True
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True exploration:=True
 ```
-- slam:=False for map-based navigation
+- exploration:=False for passed a saved map to navigation
 
 ### 2.2 Launch files for reference
 #### SLAM
@@ -63,15 +63,15 @@ ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True slam:=T
 
 ### 2.3 Remote PC
 
-While performing colcon build on remote-pc please add the below to ignore `ydlidar_ros2_driver` since lidar will not be connected to remote-pc.
+While performing colcon build on remote-pc please add the below to ignore `ydlidar_sdk, ydlidar_ros2_driver, v4l2_camera` since lidar will not be connected to remote-pc.
 
 ```
-colcon build --packages-ignore ydlidar_ros2_driver
+colcon build --packages-ignore ydlidar_sdk ydlidar_ros2_driver v4l2_camera
 ```
 
 # 3. Demos
 
-<!-- Simulation | Vizualisation of Sensors (Lidar,Odometery,Camera) 
+<!-- Simulation | Visualisation of Sensors (Lidar, Odometery, Camera) 
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/rigbetellabs/tortoisebot_docs/master/imgs/tortoiseBot_demo/002.png) |![](https://raw.githubusercontent.com/rigbetellabs/tortoisebot_docs/master/imgs/tortoiseBot_demo/005.png) 
 
