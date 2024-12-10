@@ -24,8 +24,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
     
     
-    gazebo_launch_dir = os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
-    default_model_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'models/urdf/tortoisebot_simple.xacro')
+    gazebo_launch_dir = os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
+    state_publisher_dir = os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
     default_rviz_config_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'rviz/tortoisebot_sensor_display.rviz')
     
     
@@ -47,18 +47,14 @@ def generate_launch_description():
     
     state_publisher_nodes = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(gazebo_launch_dir, 'state_publisher.launch.py')),
+            os.path.join(state_publisher_dir, 'state_publisher.launch.py')),
         launch_arguments={'use_sim_time': use_sim_time}.items(),
         
-    )
-
-    
+    )    
 
     return launch.LaunchDescription([
         launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                     description='Flag to enable use_sim_time'),
-        launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                            description='Absolute path to robot urdf file'),
         launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                             description='Absolute path to rviz config file'),
         

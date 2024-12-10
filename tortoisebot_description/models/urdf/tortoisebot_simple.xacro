@@ -6,8 +6,6 @@
 <xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_physics.gazebo" />
 <xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_plugins.gazebo" />
 
-<xacro:include filename="$(find ttb_description)/models/urdf/tortoisebot_simple.gazebo" />
-
 <link name="base_link">
   <inertial>
     <origin xyz="-0.030635608127622015 -0.0004221703596385517 0.07737044666769882" rpy="0 0 0"/>
@@ -148,6 +146,8 @@
   </collision>
 </link>
 
+<link name="imu_link"/>
+
 <joint name="wheel_left_joint" type="continuous">
   <origin xyz="-0.000197 0.0778 0.032453" rpy="0 0 0"/>
   <parent link="base_link"/>
@@ -184,6 +184,12 @@
   <origin xyz="-0.0767 0.0 0.0049" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="castor_wheel"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_link"/>
 </joint>
 
 </robot>

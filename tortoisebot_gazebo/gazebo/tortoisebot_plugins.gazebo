@@ -3,7 +3,7 @@
 
 	<!-- Differential drive plugin for gazebo -->
 	<gazebo>
-	<plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
+	<plugin name='diff_drive_ttb' filename='libgazebo_ros_diff_drive.so'>
 		<ros>
 		<!-- <namespace>/demo</namespace> -->
 		</ros>
@@ -57,7 +57,7 @@
 				<stddev>0.01</stddev>
 			</noise>
 			</ray>
-			<plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+			<plugin name="ttb_lidar" filename="libgazebo_ros_ray_sensor.so">
 			<ros>
 				<remapping>~/out:=scan</remapping>
 			</ros>
@@ -90,7 +90,7 @@
         <stddev>0.007</stddev>
       </noise>
     </camera>
-    <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+    <plugin name="camera_controller_pi" filename="libgazebo_ros_camera.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>0.0</updateRate>
       <cameraName>/camera</cameraName>
