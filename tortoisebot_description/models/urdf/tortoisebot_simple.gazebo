@@ -1,7 +1,57 @@
 <?xml version="1.0" ?>
-<robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot name="tortoisebot_simple" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-	<!-- Differential drive plugin for gazebo -->
+<!-- <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace>/tortoisebot_simple</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo> -->
+
+<gazebo reference="base_link">
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="wheel_left">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>500000.0</kp>
+  <kd>10.0</kd>
+  <minDepth>0.001</minDepth>
+</gazebo>
+
+<gazebo reference="wheel_right">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>500000.0</kp>
+  <kd>10.0</kd>
+  <minDepth>0.001</minDepth>
+</gazebo>
+
+<gazebo reference="lidar">
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+</gazebo>
+
+<gazebo reference="camera_link">
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+</gazebo>
+
+<gazebo reference="camera_holder">
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+</gazebo>
+
+<gazebo reference="castor_wheel">
+  <mu1>0.1</mu1>
+  <mu2>0.1</mu2>
+</gazebo>
+
+<!-- Differential drive plugin for gazebo -->
 	<gazebo>
 	<plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
 		<ros>
@@ -66,10 +116,7 @@
 			</plugin>
 		</sensor>
 		</gazebo>
-
-	<!--  ##########  CAMERA PLUGIN  ##########  -->
-
-  <!-- camera -->
+<!-- camera -->
 <gazebo reference="camera_link">
   <sensor type="camera" name="raspberrypi_camera">
     <update_rate>30.0</update_rate>
@@ -106,6 +153,5 @@
     </plugin>
   </sensor>
 </gazebo>
-
 
 </robot>
